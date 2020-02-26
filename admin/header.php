@@ -24,14 +24,12 @@
 
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading">Start Bootstrap </div>
+      <div class="sidebar-heading">Admin Panel</div>
       <div class="list-group list-group-flush">
-        <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
+        <a href="index.php" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+        <a href="orders.php" class="list-group-item list-group-item-action bg-light">Order</a>
+        <a href="products.php" class="list-group-item list-group-item-action bg-light">Product</a>
+        <a href="categories.php" class="list-group-item list-group-item-action bg-light">Category</a>
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
