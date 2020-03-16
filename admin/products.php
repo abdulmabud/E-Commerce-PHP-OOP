@@ -17,34 +17,31 @@
         }
     }
 
+    $result = $dt->select("SELECT * FROM products ORDER BY id DESC");
+
 ?>
 <div class="container">
-<div class="mt-3">
+<div class="my-3">
             <h3 class="text-center my-3 text-primary d-inline">Product List</h3>
             <p class="d-inline"><a href="./addproduct.php" class="float-right mr-5 btn btn-primary">Add Product</a></p>
         </div>
     <table class="table table-bordered">
-    <tr>
-                <th>Order Id</th>
-                <th>Time</th>
-                <th>Customer Name</th>
-                <th>Total Amount</th>
+             <tr>
+                <th>Product Id</th>
+                <th>Title</th>
+                <th>Regular Price</th>
+                <th>Sales Price</th>
                 <th>Action</th>
             </tr>
-                        <tr>
-                <td>2</td>
-                <td>2020-02-23 11:36:01</td>
-                <td>Abdul Mabud</td>
-                <td>972</td>
-            <td><a href="http://127.0.0.1:8000/admin/order/2" class="btn btn-primary">Details</a></td>
+            <?php while($row = $result->fetch_assoc()): ?>
+            <tr>
+                <td><?php echo $row['id']; ?></td>
+                <td><?php echo $row['title']; ?></td>
+                <td><?php echo $row['regular_price']; ?></td>
+                <td><?php echo $row['sale_price']; ?></td>
+            <td><a href="admin/product-details.php?product=<?php echo $row['id']; ?>" class="btn btn-primary">Details</a></td>
             </tr>
-                        <tr>
-                <td>1</td>
-                <td>2020-02-08 06:45:42</td>
-                <td>Abdul Mabud</td>
-                <td>1748</td>
-            <td><a href="http://127.0.0.1:8000/admin/order/1" class="btn btn-primary">Details</a></td>
-            </tr>
+            <?php endwhile; ?>
     </table>
 </div>
 
