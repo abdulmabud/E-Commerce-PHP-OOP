@@ -1,4 +1,11 @@
 <?php include 'header.php'; ?>
+<?php
+
+  $dt = new Database();
+  var_dump($dt->conn);
+
+
+?>
 <!-- Page Content -->
 <div class="container">
 
