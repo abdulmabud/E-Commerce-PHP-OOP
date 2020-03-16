@@ -9,7 +9,7 @@
         $categoryId = $_POST['category_id'];
         $status = $_POST['status'];
 
-        $insert = $dt->insert("INSERT INTO products(title, regular_price, sale_price, category_id, status) VALUES('$title', '$regularPrice', '$salePrice', '$categoryId', 'status')");
+        $insert = $dt->insert("INSERT INTO products(title, regular_price, sale_price, category_id, status) VALUES('$title', '$regularPrice', '$salePrice', '$categoryId', '$status')");
         if($insert){
             echo '<h4 class="alert alert-success">Product added Successfully</h4>';
         }else{

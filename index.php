@@ -23,7 +23,9 @@
   //   echo 'delete also done';
   // }
 
-  
+  $result = $dt->select("SELECT * FROM products WHERE status = '1' ")
+
+
 
 ?>
 <!-- Page Content -->
@@ -64,119 +66,23 @@
 
       <div class="row">
 
+    <?php while($row = $result->fetch_assoc()): ?>
         <div class="col-lg-3 col-md-6 mb-4">
           <div class="card h-100">
             <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="http://127.0.0.1:8000/product/1">Lincoln Schultz</a>
+                <a href="http://127.0.0.1/product?name=<?php echo $row['title']; ?>&&item=<?php echo $row['id']; ?>"><?php echo $row['title']; ?></a>
               </h4>
-              <h5 class="d-inline"><del>BDT 254</del></h5>
-              <h5 class="d-inline">BDT 764</h5>
+              <h5 class="d-inline"><del>BDT <?php echo $row['regular_price']; ?></del></h5> <br>
+              <h5 class="d-inline">BDT <?php echo $row['sale_price']; ?></h5>
             </div>
             <div class="card-footer">
               <a href="http://127.0.0.1:8000/cart/1" class="btn btn-primary btn-block">Add to Cart</a>
             </div>
           </div>
         </div>
-
-        <div class="col-lg-3 col-md-6 mb-4">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="http://127.0.0.1:8000/product/1">Lincoln Schultz</a>
-              </h4>
-              <h5 class="d-inline"><del>BDT 254</del></h5>
-              <h5 class="d-inline">BDT 764</h5>
-            </div>
-            <div class="card-footer">
-              <a href="http://127.0.0.1:8000/cart/1" class="btn btn-primary btn-block">Add to Cart</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-4">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="http://127.0.0.1:8000/product/1">Lincoln Schultz</a>
-              </h4>
-              <h5 class="d-inline"><del>BDT 254</del></h5>
-              <h5 class="d-inline">BDT 764</h5>
-            </div>
-            <div class="card-footer">
-              <a href="http://127.0.0.1:8000/cart/1" class="btn btn-primary btn-block">Add to Cart</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-4">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="http://127.0.0.1:8000/product/1">Lincoln Schultz</a>
-              </h4>
-              <h5 class="d-inline"><del>BDT 254</del></h5>
-              <h5 class="d-inline">BDT 764</h5>
-            </div>
-            <div class="card-footer">
-              <a href="http://127.0.0.1:8000/cart/1" class="btn btn-primary btn-block">Add to Cart</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-4">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="http://127.0.0.1:8000/product/1">Lincoln Schultz</a>
-              </h4>
-              <h5 class="d-inline"><del>BDT 254</del></h5>
-              <h5 class="d-inline">BDT 764</h5>
-            </div>
-            <div class="card-footer">
-              <a href="http://127.0.0.1:8000/cart/1" class="btn btn-primary btn-block">Add to Cart</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-4">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="http://127.0.0.1:8000/product/1">Lincoln Schultz</a>
-              </h4>
-              <h5 class="d-inline"><del>BDT 254</del></h5>
-              <h5 class="d-inline">BDT 764</h5>
-            </div>
-            <div class="card-footer">
-              <a href="http://127.0.0.1:8000/cart/1" class="btn btn-primary btn-block">Add to Cart</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-4">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="http://127.0.0.1:8000/product/1">Lincoln Schultz</a>
-              </h4>
-              <h5 class="d-inline"><del>BDT 254</del></h5>
-              <h5 class="d-inline">BDT 764</h5>
-            </div>
-            <div class="card-footer">
-              <a href="http://127.0.0.1:8000/cart/1" class="btn btn-primary btn-block">Add to Cart</a>
-            </div>
-          </div>
-        </div>
-
-
+    <?php endwhile; ?>
 
       </div>
       <!-- /.row -->
