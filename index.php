@@ -3,25 +3,27 @@
 
   $dt = new Database();
   
-  $result = $dt->select("select * from products");
-  while($row = $result->fetch_assoc()){
-    // var_dump($row);
-  }
+  // $result = $dt->select("select * from products");
+  // while($row = $result->fetch_assoc()){
+  //   // var_dump($row);
+  // }
 
-  $insert = $dt->insert("insert into products(title) VALUES('nEW TITLE')");
-  if($insert){
-    echo 'Vlaue insert';
-  }
+  // $insert = $dt->insert("insert into products(title) VALUES('nEW TITLE')");
+  // if($insert){
+  //   echo 'Vlaue insert';
+  // }
 
-  $update = $dt->update("update products set title = 'new new' where id=6");
-  if($update){
-    echo 'Update done';
-  }
+  // $update = $dt->update("update products set title = 'new new' where id=6");
+  // if($update){
+  //   echo 'Update done';
+  // }
 
-  $delete = $dt->delete('delete from products where id = 6');
-  if($delete){
-    echo 'delete also done';
-  }
+  // $delete = $dt->delete('delete from products where id = 6');
+  // if($delete){
+  //   echo 'delete also done';
+  // }
+
+  
 
 ?>
 <!-- Page Content -->

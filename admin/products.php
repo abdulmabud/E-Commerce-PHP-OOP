@@ -1,5 +1,7 @@
 <?php include 'header.php'; ?>
 <?php
+    $dt = new Database();
+
     if(isset($_POST['addProduct'])){
         $title = $_POST['title'];
         $regularPrice = $_POST['regular_price'];
@@ -7,14 +9,13 @@
         $categoryId = $_POST['category_id'];
         $status = $_POST['status'];
 
-        $sql = "INSERT INTO products(title, regular_price, sale_price, category_id, status) VALUES('$title', '$regularPrice', '$salePrice', '$categoryId', 'status')";
-        if($conn->query($sql)){
+        $insert = $dt->insert("INSERT INTO products(title, regular_price, sale_price, category_id, status) VALUES('$title', '$regularPrice', '$salePrice', '$categoryId', 'status')");
+        if($insert){
             echo '<h4 class="alert alert-success">Product added Successfully</h4>';
         }else{
             echo $conn->error;
         }
     }
-
 
 ?>
 <div class="container">
