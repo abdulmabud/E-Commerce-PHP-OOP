@@ -28,17 +28,28 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home
+            <a class="nav-link" href="{{ route('homepage') }}">Home
               <span class="sr-only">(current)</span>
             </a>
           </li>
+          <div class="dropdown show">
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+             
+              <a class="dropdown-item" href="#">Category 1</a>
+              <a class="dropdown-item" href="#">Category 2</a>
+              
+            </div>
+          </li>
+          </div>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Cart</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
+            <a class="nav-link" href="#">FAQ</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Contact</a>
