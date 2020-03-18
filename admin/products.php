@@ -17,6 +17,22 @@
         }
     }
 
+    if(isset($_POST['updateProduct'])){
+        $title = $_POST['title'];
+        $regularPrice = $_POST['regular_price'];
+        $salePrice = $_POST['sale_price'];
+        $categoryId = $_POST['category_id'];
+        $status = $_POST['status'];
+        $pid = $_POST['pid'];
+
+        $insert = $dt->update("Update products SET title = '$title',  regular_price = '$regularPrice',  sale_price = '$salePrice',  category_id = '$categoryId', status = '$status' WHERE id = '$pid' ");
+        if($insert){
+            echo '<h4 class="alert alert-success">Product updated Successfully</h4>';
+        }else{
+            echo $conn->error;
+        }
+    }
+
     $result = $dt->select("SELECT * FROM products ORDER BY id DESC");
 
 ?>
