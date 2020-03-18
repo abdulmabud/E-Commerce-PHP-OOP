@@ -39,7 +39,7 @@
                 <td><?php echo $row['title']; ?></td>
                 <td><?php echo $row['regular_price']; ?></td>
                 <td><?php echo $row['sale_price']; ?></td>
-            <td><a href="admin/product-details.php?product=<?php echo $row['id']; ?>" class="btn btn-primary">Details</a></td>
+            <td><a href="product-details.php?product=<?php echo $row['id']; ?>" class="btn btn-primary">Details</a></td>
             </tr>
             <?php endwhile; ?>
     </table>
