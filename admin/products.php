@@ -1,6 +1,6 @@
 <?php include 'header.php'; ?>
 <?php
-    $dt = new Database();
+    $db = new Database();
 
     if(isset($_POST['addProduct'])){
         $title = $_POST['title'];
@@ -9,7 +9,7 @@
         $categoryId = $_POST['category_id'];
         $status = $_POST['status'];
 
-        $insert = $dt->insert("INSERT INTO products(title, regular_price, sale_price, category_id, status) VALUES('$title', '$regularPrice', '$salePrice', '$categoryId', '$status')");
+        $insert = $db->insert("INSERT INTO products(title, regular_price, sale_price, category_id, status) VALUES('$title', '$regularPrice', '$salePrice', '$categoryId', '$status')");
         if($insert){
             echo '<h4 class="alert alert-success">Product added Successfully</h4>';
         }else{
@@ -25,7 +25,7 @@
         $status = $_POST['status'];
         $pid = $_POST['pid'];
 
-        $insert = $dt->update("Update products SET title = '$title',  regular_price = '$regularPrice',  sale_price = '$salePrice',  category_id = '$categoryId', status = '$status' WHERE id = '$pid' ");
+        $insert = $db->update("Update products SET title = '$title',  regular_price = '$regularPrice',  sale_price = '$salePrice',  category_id = '$categoryId', status = '$status' WHERE id = '$pid' ");
         if($insert){
             echo '<h4 class="alert alert-success">Product updated Successfully</h4>';
         }else{
@@ -33,7 +33,7 @@
         }
     }
 
-    $result = $dt->select("SELECT * FROM products ORDER BY id DESC");
+    $result = $db->select("SELECT * FROM products ORDER BY id DESC");
 
 ?>
 <div class="container">

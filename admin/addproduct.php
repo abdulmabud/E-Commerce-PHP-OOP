@@ -1,4 +1,10 @@
 <?php include 'header.php'; ?>
+<?php 
+
+    $db = new Database();
+    $categories = $db->select("SELECT id, name FROM categories WHERE status = '1' ");
+
+?>
 <div class="container">
 <h3 class="text text-center text-primary">Add Product</h3>
     <div class="row">
@@ -22,9 +28,9 @@
                     <td>Category</td>
                     <td>
                         <select name="category_id" id="" class="form-control">
-                            
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                           
+                            <?php while($row = $categories->fetch_assoc()){?>
+                                <option value="<?php echo $row['id']; ?>"><?php echo $row['name']; ?></option>
+                            <?php } ?>
                         </select>
                     </td>
                 </tr>

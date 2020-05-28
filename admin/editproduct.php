@@ -1,10 +1,14 @@
 <?php include 'header.php'; ?>
 <?php 
     $dt = new Database();
+    //Product Information
     $productId = $_GET['product_id'];
     $result = $dt->select("SELECT * FROM products WHERE id = '$productId' ");
     $product = $result->fetch_assoc();
 
+    // Category Information
+    $db = new Database();
+    $categories = $db->select("SELECT id, name FROM categories WHERE status = '1' ");
 
 ?>
 <div class="container">
@@ -32,9 +36,9 @@
                     <td>Category</td>
                     <td>
                         <select name="category_id" id="" class="form-control">
-                            
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                           
+                        <?php while($row = $categories->fetch_assoc()){?>
+                                <option value="<?php echo $row['id']; ?>" <?php echo $product['category_id'] == $row['id']? 'selected':''; ?> ><?php echo $row['name']; ?></option>
+                            <?php } ?>
                         </select>
                     </td>
                 </tr>
