@@ -39,9 +39,9 @@
                 <tr>
                     <td><a href="editproduct.php?product_id=<?php echo $product['id']; ?>" class="btn btn-primary">Edit Product</a></td>
                   <td>
-                    <form action="" method="post">
+                    <form action="products.php" method="post">
                         <input type="hidden" name="pid" value="<?php echo $product['id']; ?>">
-                        <input type="submit" class="btn btn-danger" value="Delete Product">
+                        <input type="submit" class="btn btn-danger" name="deleteProduct" value="Delete Product">
                    </form>
                   </td>
                     

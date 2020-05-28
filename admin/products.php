@@ -33,6 +33,16 @@
         }
     }
 
+    if(isset($_POST['deleteProduct'])){
+        $pid = $_POST['pid'];
+        $delete = $db->delete("DELETE FROM products WHERE id = '$pid' ");
+        if($delete){
+            echo '<h4 class="alert alert-success">Product Delete Successfully</h4>';
+        }else{
+            echo $conn->error;
+        }
+    }
+
     $result = $db->select("SELECT * FROM products ORDER BY id DESC");
 
 ?>
