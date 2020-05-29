@@ -78,7 +78,7 @@
               <h5 class="d-inline">BDT <?php echo $row['sale_price']; ?></h5>
             </div>
             <div class="card-footer">
-              <a href="http://127.0.0.1:8000/cart/1" class="btn btn-primary btn-block">Add to Cart</a>
+              <a href="cart.php?product_id=<?php echo $row['id']; ?>" class="btn btn-primary btn-block">Add to Cart</a>
             </div>
           </div>
         </div>
