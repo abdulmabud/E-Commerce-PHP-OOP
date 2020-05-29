@@ -1,9 +1,24 @@
 <?php include 'header.php'; ?>
 <?php 
     $db = new Database();
+    
+
+    if(isset($_POST['updateCategory'])){
+        $name = $_POST['name'];
+        $category_id = $_POST['category_id'];
+        $status = $_POST['status'];
+        $cid = $_POST['cid'];
+        $slug = strtolower(str_replace(' ', '-', $name));
+        
+        $update = $db->update("UPDATE categories SET name = '$name', category_id = '$category_id', slug='$slug', status = '$status' WHERE id = '$cid' ");
+        if($update){
+            echo '<h4 class="alert alert-success">Category Updated Successfully</h4>';
+        }else{
+            echo $conn->error;
+        }
+    }
+
     $categories = $db->select("SELECT id, name, status FROM categories ORDER BY ID DESC");
-
-
 ?>
 
 <div class="container">
@@ -24,7 +39,7 @@
                 <td><?php echo $row['id']; ?></td>
                 <td><?php echo $row['name']; ?></td>
                 <td><?php echo $row['status'] == 1 ? 'Publish' : 'Unpublish'; ?></td>
-                <td><a href="" class="btn btn-primary">Details</a></td>
+                <td><a href="category-details.php?category=<?php echo $row['id']; ?>" class="btn btn-primary">Details</a></td>
             </tr>
             <?php } ?>
            

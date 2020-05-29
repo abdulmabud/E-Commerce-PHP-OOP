@@ -1,9 +1,9 @@
 <?php include 'header.php'; ?>
 <?php 
-    $dt = new Database();
+    $db = new Database();
     //Product Information
     $productId = $_GET['product_id'];
-    $result = $dt->select("SELECT * FROM products WHERE id = '$productId' ");
+    $result = $db->select("SELECT * FROM products WHERE id = '$productId' ");
     $product = $result->fetch_assoc();
 
     // Category Information
