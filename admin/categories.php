@@ -3,6 +3,20 @@
     $db = new Database();
     
 
+    if(isset($_POST['addCategory'])){
+        $name = $_POST['name'];
+        $category_id = $_POST['category_id'];
+        $status = $_POST['status'];
+        $slug = strtolower(str_replace(' ', '-', $name));
+        
+        $insert = $db->insert("INSERT INTO categories(name, slug, category_id, status) VALUES('$name', '$slug', '$category_id', '$status') ");
+        if($insert){
+            echo '<h4 class="alert alert-success">Category Inserted Successfully</h4>';
+        }else{
+            echo $conn->error;
+        }
+    }
+    
     if(isset($_POST['updateCategory'])){
         $name = $_POST['name'];
         $category_id = $_POST['category_id'];
@@ -18,13 +32,23 @@
         }
     }
 
+    if(isset($_POST['deleteCategory'])){
+        $cid = $_POST['cid'];
+        $delete = $db->delete("DELETE FROM categories WHERE id = '$cid' ");
+        if($delete){
+            echo '<h4 class="alert alert-success">Category Deleted Successfully</h4>';
+        }else{
+            echo $conn->error;
+        }
+    }
+
     $categories = $db->select("SELECT id, name, status FROM categories ORDER BY ID DESC");
 ?>
 
 <div class="container">
         <div class="mt-3">
             <h3 class="text-center my-3 text-primary d-inline">Category List</h3>
-            <p class="d-inline"><a href="" class="float-right mr-5 btn btn-primary">Add Category</a></p>
+            <p class="d-inline"><a href="add-category.php" class="float-right mr-5 btn btn-primary">Add Category</a></p>
         </div>
               
         <table class="table table-bordered mt-3">

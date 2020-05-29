@@ -45,8 +45,8 @@
                     <td><a href="editcategory.php?category=<?php echo $category['id']; ?>" class="btn btn-primary">Edit Category</a></td>
                   <td>
                     <form action="categories.php" method="post">
-                        <input type="hidden" name="pid" value="<?php echo $category['id']; ?>">
-                        <input type="submit" class="btn btn-danger" name="deleteProduct" value="Delete Category">
+                        <input type="hidden" name="cid" value="<?php echo $category['id']; ?>">
+                        <input type="submit" class="btn btn-danger" name="deleteCategory" value="Delete Category">
                    </form>
                   </td>
                     
