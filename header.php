@@ -1,5 +1,10 @@
 <?php include './inc/database.php'; ?>
 <?php include './inc/classes/cart.php'; ?>
+<?php
+  $db = new Database();
+  $categoryObj = $db->select("SELECT name, slug FROM categories WHERE status = '1' ");
+  
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,10 +45,9 @@
           <li class="nav-item">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-             
-              <a class="dropdown-item" href="#">Category 1</a>
-              <a class="dropdown-item" href="#">Category 2</a>
-              
+             <?php while($categories = $categoryObj->fetch_assoc()){ ?>
+              <a class="dropdown-item" href="/category/<?php echo $categories['slug']; ?>"><?php echo $categories['name']; ?></a>
+             <?php } ?>             
             </div>
           </li>
           </div>
