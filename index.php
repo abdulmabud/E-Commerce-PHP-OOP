@@ -1,29 +1,29 @@
 <?php include 'header.php'; ?>
 <?php
 
-  $dt = new Database();
+  $db = new Database();
   
-  // $result = $dt->select("select * from products");
+  // $result = $db->select("select * from products");
   // while($row = $result->fetch_assoc()){
   //   // var_dump($row);
   // }
 
-  // $insert = $dt->insert("insert into products(title) VALUES('nEW TITLE')");
+  // $insert = $db->insert("insert into products(title) VALUES('nEW TITLE')");
   // if($insert){
   //   echo 'Vlaue insert';
   // }
 
-  // $update = $dt->update("update products set title = 'new new' where id=6");
+  // $update = $db->update("update products set title = 'new new' where id=6");
   // if($update){
   //   echo 'Update done';
   // }
 
-  // $delete = $dt->delete('delete from products where id = 6');
+  // $delete = $db->delete('delete from products where id = 6');
   // if($delete){
   //   echo 'delete also done';
   // }
 
-  $result = $dt->select("SELECT * FROM products WHERE status = '1' ")
+  $result = $db->select("SELECT * FROM products WHERE status = '1' ")
 
 
 
@@ -72,7 +72,7 @@
             <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="http://127.0.0.1/product?name=<?php echo $row['title']; ?>&&item=<?php echo $row['id']; ?>"><?php echo $row['title']; ?></a>
+                <a href="product.php?name=<?php echo $row['title']; ?>&&item=<?php echo $row['id']; ?>"><?php echo $row['title']; ?></a>
               </h4>
               <h5 class="d-inline"><del>BDT <?php echo $row['regular_price']; ?></del></h5> <br>
               <h5 class="d-inline">BDT <?php echo $row['sale_price']; ?></h5>
