@@ -1,8 +1,8 @@
 <?php include 'header.php'; ?>
 <?php 
     session_start();
-    if(isset($_GET['product_id'])){
-        $pid = $_GET['product_id'];
+    if(isset($_POST['productId'])){
+        $pid = $_POST['productId'];
         $db = new Database();
         $cartObj = new Cart();
         $result = $db->select("SELECT title, sale_price FROM products WHERE id = '$pid' ");

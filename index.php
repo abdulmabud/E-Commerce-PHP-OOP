@@ -78,7 +78,7 @@
               <h5 class="d-inline">BDT <?php echo $row['sale_price']; ?></h5>
             </div>
             <div class="card-footer">
-              <a href="cart.php?product_id=<?php echo $row['id']; ?>" class="btn btn-primary btn-block">Add to Cart</a>
+              <button data-productId="<?php echo $row['id']; ?>" class="btn btn-primary btn-block addtocart">Add to Cart</button>
             </div>
           </div>
         </div>
@@ -95,3 +95,20 @@
 
 </div>
 <?php include 'footer.php'; ?>
+<script>
+  $('.addtocart').click(function(){
+    console.log('addt ');
+    
+        var productId = this.dataset.productid;
+        var thisBtn = this;
+        $.ajax({
+          url: 'cart.php',
+          method: 'POST',
+          data: {productId: productId },
+          cache: false,
+          success: function(data){
+              $(thisBtn).html('Added');
+          }
+        });
+      });
+</script>
