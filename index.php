@@ -97,8 +97,6 @@
 <?php include 'footer.php'; ?>
 <script>
   $('.addtocart').click(function(){
-    console.log('addt ');
-    
         var productId = this.dataset.productid;
         var thisBtn = this;
         $.ajax({

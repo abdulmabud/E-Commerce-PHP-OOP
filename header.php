@@ -46,7 +46,7 @@
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
              <?php while($categories = $categoryObj->fetch_assoc()){ ?>
-              <a class="dropdown-item" href="/category/<?php echo $categories['slug']; ?>"><?php echo $categories['name']; ?></a>
+              <a class="dropdown-item" href="category.php?name=<?php echo $categories['slug']; ?>"><?php echo $categories['name']; ?></a>
              <?php } ?>             
             </div>
           </li>
