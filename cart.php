@@ -56,7 +56,7 @@
             </tr>
         </table>
         <div style="margin-bottom: 4rem!important;">
-        <a href="" class="float-right btn btn-primary w-25 btn-block">Checkout</a>
+        <a href="checkout.php" class="float-right btn btn-primary w-25 btn-block">Checkout</a>
         </div>
         
     </div>
