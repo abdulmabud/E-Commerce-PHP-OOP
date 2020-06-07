@@ -63,7 +63,9 @@ class Database{
         }
     }
 
-
+    public function getLastId(){
+        return $this->conn->insert_id;
+    }
 
 
 }
