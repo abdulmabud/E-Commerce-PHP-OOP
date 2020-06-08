@@ -18,7 +18,7 @@
                 <td><?php echo $row['created_at']; ?></td>
                 <td><?php echo $row['user_name']; ?></td>
                 <td><?php echo $row['total_price']; ?></td>
-            <td><a href="" class="btn btn-primary">Details</a></td>
+            <td><a href="orderdetails.php?order_id=<?php echo $row['id']; ?>" class="btn btn-primary">Details</a></td>
             </tr>
            <?php } ?>
         </table>
