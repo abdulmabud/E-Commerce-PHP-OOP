@@ -1,7 +1,7 @@
 <?php include 'header.php'; ?>
 <?php 
     session_start();
-    if(isset($_POST['productId'])){
+    if(isset($_POST['addtocart'])){
         $pid = $_POST['productId'];
         $db = new Database();
         $cartObj = new Cart();
@@ -10,6 +10,14 @@
         $title = $product['title'];
         $price = $product['sale_price'];
         $cartObj->add_to_cart($pid, $title, $price);
+    }
+
+    if(isset($_POST['quantityBtn'])){
+        $pid = $_POST['productId'];
+        $btn = $_POST['quantityBtn'];
+        $cartObj = new Cart();
+        $cartObj->updateCart($pid, $btn);
+        
     }
 
     

@@ -85,7 +85,7 @@
             </div>
           <?php } ?>
         </div>
-
+         
       <h2>New Arrival</h2>
       <div class="row">
         <?php while($row = $result->fetch_assoc()): ?>
@@ -123,11 +123,48 @@
         $.ajax({
           url: 'cart.php',
           method: 'POST',
-          data: {productId: productId },
+          data: {productId: productId, addtocart: 'yes' },
           cache: false,
           success: function(data){
-              $(thisBtn).html('Added');
+              $(thisBtn).parent().html('<h5 class="addtocartQuantity" style="text-align: center;"><button class="minusBtn" data-minusBtn = '+productId+'>-</button> <input type="text" value="1" class="text-center" style="width: 60px;">  <button class="plusBtn" data-plusbtn="'+productId+'">+</button> </h5>');
+              // $('.card-footer').parent.html('<h4>hjkhhkjh</h4>');
+              // $('.addtocartQuantity' [hh=44]).css('display', 'block');
+            run();
           }
         });
       });
+
+      function run(){
+          $('.minusBtn').click(function(){
+            var productId = this.dataset.minusbtn;
+            $.ajax({
+              url: 'cart.php',
+              method: 'POST',
+              data: {productId: productId, quantityBtn: 'Minus Btn'},
+              cache: false,
+              success: function(data){
+                console.log('dsfffff');
+                
+              } 
+            })
+            
+          });
+         
+          $('.plusBtn').click(function(){
+            var productId = this.dataset.plusbtn;
+            $.ajax({
+              url: 'cart.php',
+              method: 'POST',
+              data: {productId: productId, quantityBtn: 'Plus Btn'},
+              cache: false,
+              success: function(data){
+                console.log(data);
+                
+              } 
+            })
+            
+          });
+      }
+
+     
 </script>

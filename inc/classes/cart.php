@@ -19,5 +19,17 @@ class Cart{
             ];
         }  
         $_SESSION['cart'] = $cart;
-    }   
+    }  
+    
+    public function updateCart($id, $btn){
+        $cart = $_SESSION['cart'];
+        $quantity = $cart['products'][$id]['quantity'];
+        if($btn == 'Minus Btn'){
+            $cart['products'][$id]['quantity'] = $quantity - 1;
+        }else if($btn == 'Plus Btn'){
+            
+            $cart['products'][$id]['quantity'] = $quantity + 1;
+        }
+        $_SESSION['cart'] = $cart;
+    }
 }
