@@ -23,9 +23,9 @@
   //   echo 'delete also done';
   // }
 
-  $result = $db->select("SELECT * FROM products WHERE status = '1' ")
+  $result = $db->select("SELECT * FROM products WHERE status = '1' ");
 
-
+  $fproducts = $db->select("SELECT p.id, title, regular_price, sale_price, c.name FROM products as p INNER JOIN featured_products ON p.id = featured_products.product_id INNER JOIN categories as c ON p.category_id = c.id ");
 
 ?>
 <!-- Page Content -->
@@ -64,26 +64,47 @@
         </a>
       </div>
 
-      <div class="row">
 
-    <?php while($row = $result->fetch_assoc()): ?>
-        <div class="col-lg-3 col-md-6 mb-4">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="product.php?name=<?php echo $row['title']; ?>&&item=<?php echo $row['id']; ?>"><?php echo $row['title']; ?></a>
-              </h4>
-              <h5 class="d-inline"><del>BDT <?php echo $row['regular_price']; ?></del></h5> <br>
-              <h5 class="d-inline">BDT <?php echo $row['sale_price']; ?></h5>
+      <h2>Featured Product</h2>
+        <div class="row">
+          <?php while($row = $fproducts->fetch_assoc()){ ?>
+            <div class="col-lg-3 col-md-6 mb-4">
+              <div class="card h-100">
+                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <a href="product.php?name=<?php echo $row['title']; ?>&&item=<?php echo $row['id']; ?>"><?php echo $row['title']; ?></a>
+                  </h4>
+                  <h5 class="d-inline"><del>BDT <?php echo $row['regular_price']; ?></del></h5> <br>
+                  <h5 class="d-inline">BDT <?php echo $row['sale_price']; ?></h5>
+                </div>
+                <div class="card-footer">
+                  <button data-productId="<?php echo $row['id']; ?>" class="btn btn-primary btn-block addtocart">Add to Cart</button>
+                </div>
+              </div>
             </div>
-            <div class="card-footer">
-              <button data-productId="<?php echo $row['id']; ?>" class="btn btn-primary btn-block addtocart">Add to Cart</button>
-            </div>
-          </div>
+          <?php } ?>
         </div>
-    <?php endwhile; ?>
 
+      <h2>New Arrival</h2>
+      <div class="row">
+        <?php while($row = $result->fetch_assoc()): ?>
+            <div class="col-lg-3 col-md-6 mb-4">
+              <div class="card h-100">
+                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <a href="product.php?name=<?php echo $row['title']; ?>&&item=<?php echo $row['id']; ?>"><?php echo $row['title']; ?></a>
+                  </h4>
+                  <h5 class="d-inline"><del>BDT <?php echo $row['regular_price']; ?></del></h5> <br>
+                  <h5 class="d-inline">BDT <?php echo $row['sale_price']; ?></h5>
+                </div>
+                <div class="card-footer">
+                  <button data-productId="<?php echo $row['id']; ?>" class="btn btn-primary btn-block addtocart">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+        <?php endwhile; ?>
       </div>
       <!-- /.row -->
 
