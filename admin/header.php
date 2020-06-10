@@ -30,6 +30,7 @@
         <a href="index.php" class="list-group-item list-group-item-action bg-light">Dashboard</a>
         <a href="orders.php" class="list-group-item list-group-item-action bg-light">Order</a>
         <a href="products.php" class="list-group-item list-group-item-action bg-light">Product</a>
+        <a href="featuredproduct.php" class="list-group-item list-group-item-action bg-light">Featured Product</a>
         <a href="categories.php" class="list-group-item list-group-item-action bg-light">Category</a>
       </div>
     </div>
