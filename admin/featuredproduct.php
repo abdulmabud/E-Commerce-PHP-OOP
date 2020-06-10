@@ -3,9 +3,23 @@
     $db = new Database();
     if(isset($_POST['savefproduct'])){
         $pid = $_POST['pid'];
-        $insert = $db->insert("INSERT INTO featured_products(product_id) VALUES('$pid') ");
-        if($insert){
-            echo '<h4 class="alert alert-success" style="font-weight: 400;">Featured Product Added Successfully</h4>'; 
+        $res = $db->select("SELECT id FROM featured_products WHERE product_id = '$pid' ");
+        if(!$res){
+            $insert = $db->insert("INSERT INTO featured_products(product_id) VALUES('$pid') ");
+            if($insert){
+                echo '<h4 class="alert alert-success" style="font-weight: 400;">Featured Product Added Successfully</h4>'; 
+            }
+        }else{
+            echo '<h4 class="alert alert-danger" style="font-weight: 400;">Product already added as Featured Product</h4>'; 
+        }
+        
+    }
+    
+    if(isset($_POST['removefrproduct'])){
+        $pid = $_POST['pid'];
+        $remove = $db->delete("DELETE FROM featured_products WHERE product_id = '$pid' ");
+        if($remove){
+            echo '<h4 class="alert alert-success" style="font-weight: 400;">Featured Product Remove Successfully</h4>'; 
         }
     }
     $result = $db->select("SELECT p.id, title, regular_price, sale_price, c.name FROM products as p INNER JOIN featured_products ON p.id = featured_products.product_id INNER JOIN categories as c ON p.category_id = c.id ");
@@ -44,7 +58,8 @@
             <td><?php echo $row['name']; ?></td>
             <td><a href="product-details.php?product=<?php echo $row['id']; ?>" class="btn btn-primary">Details</a>
             <form action="" method="POST" class="d-inline">
-                <input type="submit" value="Remove" class="btn btn-danger">
+                <input type="hidden" value="<?php echo $row['id']; ?>" name="pid">
+                <input type="submit" value="Remove" name="removefrproduct" class="btn btn-danger">
             </form>
             
             </td>
