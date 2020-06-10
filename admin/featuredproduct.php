@@ -1,6 +1,13 @@
 <?php include 'header.php'; ?>
 <?php
     $db = new Database();
+    if(isset($_POST['savefproduct'])){
+        $pid = $_POST['pid'];
+        $insert = $db->insert("INSERT INTO featured_products(product_id) VALUES('$pid') ");
+        if($insert){
+            echo '<h4 class="alert alert-success" style="font-weight: 400;">Featured Product Added Successfully</h4>'; 
+        }
+    }
     $result = $db->select("SELECT p.id, title, regular_price, sale_price, c.name FROM products as p INNER JOIN featured_products ON p.id = featured_products.product_id INNER JOIN categories as c ON p.category_id = c.id ");
     
     
@@ -13,9 +20,9 @@
     <div class="addfproductbox">
         <div class="row mt-5">
             <div class="col-md-6 offset-md-3">
-                <form action="" method="post" class="form-group">
+                <form action="addfeaturedproduct.php" method="post" class="form-group">
                     <input type="text" name="productName" class="form-control mb-4">
-                    <input type="submit" value="Search Product" class="btn btn-primary btn-block">
+                    <input type="submit" value="Search Product" name="searchFProduct" class="btn btn-primary btn-block">
                 </form>
             </div>      
         </div>
