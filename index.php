@@ -2,7 +2,7 @@
 <?php
 
   $db = new Database();
-  
+  session_start();
   // $result = $db->select("select * from products");
   // while($row = $result->fetch_assoc()){
   //   // var_dump($row);
@@ -116,17 +116,33 @@
 
 </div>
 <?php include 'footer.php'; ?>
+
 <script>
+  <?php
+    $cart = $_SESSION['cart'];
+    $js = json_encode($cart);
+    echo "var cart = ".$js."; ";
+  ?>
+  var js_array = <?php echo $js; ?>;
+  
+  
+  
   $('.addtocart').click(function(){
         var productId = this.dataset.productid;
         var thisBtn = this;
+        if(cart['products'][productId]){
+          var quantity = cart['products'][productId]['quantity'] + 1;
+          var qhtml = '<h5 class="addtocartQuantity" style="text-align: center;"><button class="minusBtn" data-minusBtn = '+productId+'>-</button> <input type="text" value="'+quantity+'" class="text-center" style="width: 60px;">  <button class="plusBtn" data-plusbtn="'+productId+'">+</button> </h5>';
+        }else{
+          var qhtml = '<h5 class="addtocartQuantity" style="text-align: center;"><button class="minusBtn" data-minusBtn = '+productId+'>-</button> <input type="text" value="1" class="text-center" style="width: 60px;">  <button class="plusBtn" data-plusbtn="'+productId+'">+</button> </h5>';
+        }
         $.ajax({
           url: 'cart.php',
           method: 'POST',
           data: {productId: productId, addtocart: 'yes' },
           cache: false,
           success: function(data){
-              $(thisBtn).parent().html('<h5 class="addtocartQuantity" style="text-align: center;"><button class="minusBtn" data-minusBtn = '+productId+'>-</button> <input type="text" value="1" class="text-center" style="width: 60px;">  <button class="plusBtn" data-plusbtn="'+productId+'">+</button> </h5>');
+              $(thisBtn).parent().html(qhtml);
               // $('.card-footer').parent.html('<h4>hjkhhkjh</h4>');
               // $('.addtocartQuantity' [hh=44]).css('display', 'block');
             run();
