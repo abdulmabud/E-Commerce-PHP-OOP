@@ -123,9 +123,6 @@
     $js = json_encode($cart);
     echo "var cart = ".$js."; ";
   ?>
-  var js_array = <?php echo $js; ?>;
-  
-  
   
   $('.addtocart').click(function(){
         var productId = this.dataset.productid;

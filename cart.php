@@ -16,7 +16,11 @@
         $pid = $_POST['productId'];
         $btn = $_POST['quantityBtn'];
         $cartObj = new Cart();
-        $cartObj->updateCart($pid, $btn);
+        $result = $db->select("SELECT title, sale_price FROM products WHERE id = '$pid' ");
+        $product = $result->fetch_assoc();
+        $title = $product['title'];
+        $price = $product['sale_price'];
+        $cartObj->updateCart($pid, $btn, $title, $price);
         
     }
 

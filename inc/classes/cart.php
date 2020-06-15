@@ -21,7 +21,7 @@ class Cart{
         $_SESSION['cart'] = $cart;
     }  
     
-    public function updateCart($id, $btn){
+    public function updateCart($id, $btn, $title, $price){
         $cart = $_SESSION['cart'];
         $quantity = $cart['products'][$id]['quantity'];
         if($btn == 'Minus Btn'){
@@ -33,8 +33,17 @@ class Cart{
             }
             
         }else if($btn == 'Plus Btn'){
+            if(array_key_exists($id, $cart['products'])){
+                $cart['products'][$id]['quantity'] = $quantity + 1;
+            }else{
+                $cart['products'][$id] = [
+                    'id' => $id,
+                    'title' => $title,
+                    'quantity' => 1,
+                    'price' => $price
+                ];
+            }
             
-            $cart['products'][$id]['quantity'] = $quantity + 1;
         }
         $_SESSION['cart'] = $cart;
     }
