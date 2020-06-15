@@ -25,7 +25,13 @@ class Cart{
         $cart = $_SESSION['cart'];
         $quantity = $cart['products'][$id]['quantity'];
         if($btn == 'Minus Btn'){
-            $cart['products'][$id]['quantity'] = $quantity - 1;
+            $quantity = $quantity - 1;
+            if($quantity < 1){
+                unset($cart['products'][$id]);
+            }else{
+                $cart['products'][$id]['quantity'] = $quantity;
+            }
+            
         }else if($btn == 'Plus Btn'){
             
             $cart['products'][$id]['quantity'] = $quantity + 1;

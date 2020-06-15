@@ -156,7 +156,7 @@
             var quantity = $('#q'+productId).val();
             quantity = quantity - 1;
             if(quantity < 1){
-              quantity = 1;
+              quantity = 0;
             }
             $('#q'+productId).val(quantity);
             
