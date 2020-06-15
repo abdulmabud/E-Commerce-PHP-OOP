@@ -119,10 +119,15 @@
 
 <script>
   <?php
-    $cart = $_SESSION['cart'];
+    if(isset($_SESSION['cart'])){
+      $cart = $_SESSION['cart'];
+    }else{
+        $cart['products'] = [];
+    }
     $js = json_encode($cart);
     echo "var cart = ".$js."; ";
   ?>
+  
   
   $('.addtocart').click(function(){
         var productId = this.dataset.productid;
