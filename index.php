@@ -132,9 +132,9 @@
         var thisBtn = this;
         if(cart['products'][productId]){
           var quantity = cart['products'][productId]['quantity'] + 1;
-          var qhtml = '<h5 class="addtocartQuantity" style="text-align: center;"><button class="minusBtn" data-minusBtn = '+productId+'>-</button> <input type="text" value="'+quantity+'" class="text-center" style="width: 60px;">  <button class="plusBtn" data-plusbtn="'+productId+'">+</button> </h5>';
+          var qhtml = '<h5 class="addtocartQuantity" style="text-align: center;"><button class="minusBtn" data-minusBtn = '+productId+'>-</button> <input type="text" value="'+quantity+'" id="q'+productId+'" class="text-center" style="width: 60px;">  <button class="plusBtn" data-plusbtn="'+productId+'">+</button> </h5>';
         }else{
-          var qhtml = '<h5 class="addtocartQuantity" style="text-align: center;"><button class="minusBtn" data-minusBtn = '+productId+'>-</button> <input type="text" value="1" class="text-center" style="width: 60px;">  <button class="plusBtn" data-plusbtn="'+productId+'">+</button> </h5>';
+          var qhtml = '<h5 class="addtocartQuantity" style="text-align: center;"><button class="minusBtn" data-minusBtn = '+productId+'>-</button> <input type="text" value="1" id="q'+productId+'" class="text-center" style="width: 60px;">  <button class="plusBtn" data-plusbtn="'+productId+'">+</button> </h5>';
         }
         $.ajax({
           url: 'cart.php',
@@ -153,6 +153,13 @@
       function run(){
           $('.minusBtn').click(function(){
             var productId = this.dataset.minusbtn;
+            var quantity = $('#q'+productId).val();
+            quantity = quantity - 1;
+            if(quantity < 1){
+              quantity = 1;
+            }
+            $('#q'+productId).val(quantity);
+            
             $.ajax({
               url: 'cart.php',
               method: 'POST',
@@ -168,13 +175,16 @@
          
           $('.plusBtn').click(function(){
             var productId = this.dataset.plusbtn;
+            var quantity = $('#q'+productId).val();
+            quantity = parseInt(quantity) + 1;
+            $('#q'+productId).val(quantity);
             $.ajax({
               url: 'cart.php',
               method: 'POST',
               data: {productId: productId, quantityBtn: 'Plus Btn'},
               cache: false,
               success: function(data){
-                console.log(data);
+                // console.log(data);
                 
               } 
             })
