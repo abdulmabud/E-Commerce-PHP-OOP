@@ -1,5 +1,6 @@
 <?php include 'header.php'; ?>
 <?php
+    session_start();
     if(! isset($_GET['name'])){
         header('Location: index.php');
     }
@@ -41,17 +42,14 @@
 <?php include 'footer.php'; ?>
 
 <script>
-       $('.addtocart').click(function(){
-        var productId = this.dataset.productid;
-        var thisBtn = this;
-        $.ajax({
-          url: 'cart.php',
-          method: 'POST',
-          data: {productId: productId },
-          cache: false,
-          success: function(data){
-              $(thisBtn).html('Added');
-          }
-        });
-      });
+ <?php
+    if(isset($_SESSION['cart'])){
+        $cart = $_SESSION['cart'];
+    }else{
+        $cart['products'] = [];
+    }
+    
+    $js = json_encode($cart);
+    echo "var cart = ".$js."; ";
+    ?>
     </script>
