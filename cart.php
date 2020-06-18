@@ -36,12 +36,13 @@
     ?>
 <div class="container mt-5">
         <h2 class="text-center text-primary">Cart Item List</h2>
-        <table class="table table-bordered text-center">
+        <table class="table table-bordered text-center" id="cartTable">
             <tr>
                 <th class="text-left">Product Name</th>
                 <th>Unit Price</th>
                 <th>Quantity</th>
                 <th>Price</th>
+                <th>Action</th>
             </tr>
           <?php foreach($cart['products'] as $product){ ?>
             <tr>
@@ -49,6 +50,7 @@
                 <td><?php echo $product['price']; ?></td>
                 <td class="text-center"><?php echo $product['quantity']; ?></td>
                 <td class="text-right pr-5" style="width: 15%;">BDT <span class="price"><?php echo number_format($product['price']*$product['quantity'], 2, '.', ''); ?></span> </td>
+                <td><button class="btn btn-danger removeBtn" data-productid="<?php echo $product['id']; ?>">Remove</button></td>
             </tr>
           <?php } ?>
             
@@ -75,7 +77,23 @@
           <?php } ?>
 <?php include 'footer.php'; ?>
 <script>
-    var sum = 0;
+    $('.removeBtn').click(function(){
+        var product_id = this.dataset.productid;
+        console.log(product_id);
+        $.ajax({
+            url: 'inc/content/removecartitem.php',
+            method: 'POST',
+            data: {product_id: product_id, removeItem: 'remove'},
+            cache: false,
+            success: function(data){
+               $('#cartTable').html(data);
+               updatePrice();
+            }
+        }); 
+    })
+    updatePrice();
+    function updatePrice(){
+        var sum = 0;
         $('.price').each(function(){
             sum += parseFloat($(this).text());  // Or this.innerHTML, this.innerText
         });
@@ -85,5 +103,7 @@
         totalPrice = totalPrice.toFixed(2);
         sum = sum.toFixed(2);
         $('.subTotal').text(sum);
-        $('.totalPrice').text(totalPrice); 
+        $('.totalPrice').text(totalPrice);
+    }
+         
 </script>
