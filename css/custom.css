@@ -1,3 +1,6 @@
-.addtocartQuantity{
-    /* display: none; */
+#countCart{
+    padding: 3px;
+    background-color: red;
+    border-radius: 30%;
+    color: white;
 }
