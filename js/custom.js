@@ -2,6 +2,7 @@
 $('.addtocart').click(function(){
     var productId = this.dataset.productid;
     var thisBtn = this;
+    console.log(cart);
     if(cart['products'][productId]){
       var quantity = cart['products'][productId]['quantity'] + 1;
       var qhtml = '<h5 class="addtocartQuantity" style="text-align: center;"><button class="minusBtn" data-minusBtn = '+productId+'>-</button> <input type="text" value="'+quantity+'" id="q'+productId+'" class="text-center" style="width: 60px;">  <button class="plusBtn" data-plusbtn="'+productId+'">+</button> </h5>';

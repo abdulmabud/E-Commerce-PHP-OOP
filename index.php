@@ -128,4 +128,6 @@
   $js = json_encode($cart);
   echo "var cart = ".$js."; ";
   ?>
+  console.log((cart['products']));
+  
 </script>
