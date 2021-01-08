@@ -8,6 +8,10 @@
         header('Location: cart.php');
         exit();
     }
+
+    $delivery_charge = $db->select("SELECT meta_value FROM settings WHERE meta_key = 'Delivery Charge' ");
+    $delivery_charge = $delivery_charge->fetch_assoc();
+    $delivery_charge = $delivery_charge['meta_value'];
     
 ?>
 <?php if(isset($_POST['placeOrder'])){
@@ -60,7 +64,7 @@
             </li>
           <?php } ?>
           <li class="list-group-item d-flex justify-content-between lh-condensed" style="font-weight: 500;">Subtotal <span>BDT <span class="subTotal"></span> </span></li>
-          <li class="list-group-item d-flex justify-content-between lh-condensed" style="font-weight: 500;">Delivery Charge<span>BDT <span class="deliveryCharge">50.00</span> </span></li>
+          <li class="list-group-item d-flex justify-content-between lh-condensed" style="font-weight: 500;">Delivery Charge<span>BDT <span class="deliveryCharge"><?php echo $delivery_charge; ?></span> </span></li>
           <li class="list-group-item d-flex justify-content-between lh-condensed" style="font-weight: 500;">Total Price <span>BDT <span class="totalPrice"></span> </span></li>
           
         </ul>

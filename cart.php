@@ -24,7 +24,9 @@
         
     }
 
-    
+    $delivery_charge = $db->select("SELECT meta_value FROM settings WHERE meta_key = 'Delivery Charge' ");
+    $delivery_charge = $delivery_charge->fetch_assoc();
+    $delivery_charge = $delivery_charge['meta_value'];
   
 ?>
 <?php if(!isset($_SESSION['cart'])){ ?>
@@ -62,7 +64,7 @@
             </tr>
             <tr>
                 <td>Delivery Charge</td>
-                <td class="text-right pr-3">BDT <span class="deliveryCharge">50.00</span> </td>
+                <td class="text-right pr-3">BDT <span class="deliveryCharge"><?php echo $delivery_charge; ?></span> </td>
             </tr>
             <tr>
                 <td>Total Price</td>
