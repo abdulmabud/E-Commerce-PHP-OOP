@@ -1,6 +1,6 @@
 <?php include 'header.php'; ?>
 <?php 
-    session_start();
+    // session_start();
     if(isset($_SESSION['cart'])){
         $cart = $_SESSION['cart'];
         $product_count = count($cart['products']);

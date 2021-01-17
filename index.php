@@ -2,7 +2,7 @@
 <?php
 
   $db = new Database();
-  session_start();
+  // session_start();
   // $result = $db->select("select * from products");
   // while($row = $result->fetch_assoc()){
   //   // var_dump($row);

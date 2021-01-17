@@ -1,9 +1,9 @@
+<?php session_start(); ?>
 <?php include './inc/database.php'; ?>
 <?php include './inc/classes/cart.php'; ?>
 <?php
   $db = new Database();
   $categoryObj = $db->select("SELECT name, slug FROM categories WHERE status = '1' ");
-  
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -64,9 +64,18 @@
           <li class="nav-item">
             <a class="nav-link" href="contact.php">Contact</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="register.php">Register</a>
+          <?php if(isset($_SESSION['username'])){ ?> 
+            <li class="nav-item">
+            <a class="nav-link" href="#"><?php echo $_SESSION['username']; ?></a>
           </li>
+          <?php }else{ ?>
+              <li class="nav-item">
+              <a class="nav-link" href="login.php">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="register.php">Register</a>
+            </li>
+            <?php }?>
         </ul>
       </div>
     </div>

@@ -1,6 +1,6 @@
 <?php include 'header.php'; ?>
 <?php 
-    session_start();
+    // session_start();
     if(isset($_POST['addtocart'])){
         $pid = $_POST['productId'];
         $db = new Database();

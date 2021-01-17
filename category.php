@@ -1,6 +1,6 @@
 <?php include 'header.php'; ?>
 <?php
-    session_start();
+    // session_start();
     if(! isset($_GET['name'])){
         header('Location: index.php');
     }
