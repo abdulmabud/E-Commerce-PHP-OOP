@@ -4,13 +4,19 @@
         $email = $_POST['email'];
         $password = $_POST['password'];
         $db = new Database();
-        $result = $db->select("SELECT name FROM users WHERE email = '$email' AND password = '$password' ");
+        $result = $db->select("SELECT name, is_admin FROM users WHERE email = '$email' AND password = '$password' ");
         if($result){
             $res = $result->fetch_assoc();
             $name = $res['name'];
+            $is_admin = $res['is_admin'];
             session_start();
             $_SESSION['username'] = $name;
-            header('Location: index.php');
+            if($is_admin != 1){
+                header('Location: index.php');
+            }else{
+                header('Location: admin/index.php');
+            }
+            
             
         }else{
             echo '<h2 class="text-light py-3 text-center bg-danger">Email, Password or both are Invalid!</h2>'; 
