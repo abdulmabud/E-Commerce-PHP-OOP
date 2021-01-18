@@ -1,4 +1,10 @@
 <?php include './../inc/database.php' ?>
+<?php 
+  session_start();
+  if(! isset($_SESSION['isadmin'])){
+    header('Location: ./..');
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 

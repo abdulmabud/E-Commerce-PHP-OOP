@@ -9,11 +9,12 @@
             $res = $result->fetch_assoc();
             $name = $res['name'];
             $is_admin = $res['is_admin'];
-            session_start();
+            // session_start();
             $_SESSION['username'] = $name;
             if($is_admin != 1){
                 header('Location: index.php');
             }else{
+                $_SESSION['isadmin'] = true;
                 header('Location: admin/index.php');
             }
             
@@ -40,7 +41,7 @@
                         <div class="row form-group">
                             <label for="" class="col-md-4 text-right">Password</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="password">
+                                <input type="password" class="form-control" name="password">
                             </div>
                         </div>
                         <div class="form-group">
