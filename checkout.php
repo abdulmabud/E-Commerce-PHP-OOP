@@ -22,8 +22,13 @@
     $subtotal = $_POST['subtotal'];
     $delivery_charge = $_POST['delivery_charge'];
     $total_price = $_POST['total_price'];
+    if(isset($_SESSION['userid'])){
+      $user_id = $_SESSION['userid'];
+    }else{
+      $user_id = NULL;
+    }
     $db = new Database();
-    $insert = $db->insert("INSERT INTO orders(user_name, user_phone, user_email, address, subtotal, delivery_charge, total_price) VALUES('$user_name', '$user_phone', '$user_email', '$address', '$subtotal', '$delivery_charge', '$total_price') ");
+    $insert = $db->insert("INSERT INTO orders(user_id, user_name, user_phone, user_email, address, subtotal, delivery_charge, total_price) VALUES('$user_id', '$user_name', '$user_phone', '$user_email', '$address', '$subtotal', '$delivery_charge', '$total_price') ");
     $insert_id = $db->getLastId();
 
     $products = $cart['products'];

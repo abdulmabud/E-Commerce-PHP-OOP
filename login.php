@@ -4,12 +4,14 @@
         $email = $_POST['email'];
         $password = $_POST['password'];
         $db = new Database();
-        $result = $db->select("SELECT name, is_admin FROM users WHERE email = '$email' AND password = '$password' ");
+        $result = $db->select("SELECT id, name, is_admin FROM users WHERE email = '$email' AND password = '$password' ");
         if($result){
             $res = $result->fetch_assoc();
             $name = $res['name'];
+            $id = $res['id'];
             $is_admin = $res['is_admin'];
             // session_start();
+            $_SESSION['userid'] = $id;
             $_SESSION['username'] = $name;
             if($is_admin != 1){
                 header('Location: index.php');
