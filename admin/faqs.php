@@ -13,6 +13,29 @@
         }
     }
 
+    if(isset($_POST['updateFaq'])){
+        $faqid = $_POST['faqid'];
+        $question = $_POST['question'];
+        $answer = $_POST['answer'];
+        $status = $_POST['status'];
+        $update = $db->update("UPDATE faqs SET question = '$question', answer = '$answer', status = '$status' WHERE id = '$faqid' ");
+        if($update){
+            echo '<h4 class="alert alert-success">FAQ Updated Successfully</h4>';
+        }else{
+            echo $conn->error;
+        }
+    }
+
+    if(isset($_POST['deleteFaq'])){
+        $faqid = $_POST['faqid'];
+        $delete = $db->delete("DELETE FROM faqs WHERE id = '$faqid' ");
+        if($delete){
+            echo '<h4 class="alert alert-success">FAQ Deleted Successfully</h4>';
+        }else{
+            echo $conn->error;
+        }
+    }
+
     $faqs = $db->select('SELECT id, question, answer, status FROM faqs');
 ?>
 <div class="container">
@@ -35,7 +58,8 @@
                 <td><?php echo $faq['id']; ?></td>
                 <td><?php echo $faq['question']; ?></td>
                 <td><?php echo $faq['status'] == 1 ? 'Publish':'Unpublish' ?></td>
-                <td><a href="faqdetails.php?id=<?php echo $faq['id']; ?>" class="btn btn-primary">Details</a></td>
+                <td><a href="faqdetails.php?id=<?php echo $faq['id']; ?>
+                " class="btn btn-primary">Details</a></td>
             </tr>
            <?php } ?>
         </table>

@@ -28,10 +28,11 @@
                     <td><?php echo $faq['status'] == 1 ? 'Publish':'Unpublish'; ?></td>
                 </tr>
                 <tr>
-                    <td><a href="#" class="btn btn-primary">Edit FAQ</a></td>
+                    <td><a href="editfaq.php?id=<?php echo $faq['id']; ?>" class="btn btn-primary">Edit FAQ</a></td>
                   <td>
-                    <form action="#" method="post">
-                        <input type="submit" class="btn btn-danger" value="Delete FAQ">
+                    <form action="faqs.php" method="POST">
+                        <input type="hidden" name="faqid" value="<?php echo $faqid; ?>">
+                        <input type="submit" class="btn btn-danger" name="deleteFaq" value="Delete FAQ">
                    </form>
                   </td>
                     
