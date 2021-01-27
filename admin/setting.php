@@ -5,7 +5,7 @@
         $delivery_charge = $result->fetch_assoc();
 ?>
 <div class="container">
-        <table class="table table-bordered w-50">
+        <table class="table table-bordered w-50 mt-4">
             <tr>
                 <td>Delivery Charge</td>
                 <td><input type="text" value="<?php echo $delivery_charge['meta_value']; ?>" id="charge" class="form-control text-center" style="width: 100px;"></td>
@@ -13,6 +13,8 @@
             </tr>
         </table>
         <h4 class="text-primary" id="dresult"></h4>
+        <hr>
+        <a href="update-slider.php" class="btn btn-primary">Update Slider Setting</a>
 </div>
 <?php include 'footer.php'; ?>
 

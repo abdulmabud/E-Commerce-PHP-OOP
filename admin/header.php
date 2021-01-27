@@ -38,9 +38,9 @@
         <a href="products.php" class="list-group-item list-group-item-action bg-light">Product</a>
         <a href="featuredproduct.php" class="list-group-item list-group-item-action bg-light">Featured Product</a>
         <a href="categories.php" class="list-group-item list-group-item-action bg-light">Category</a>
-        <a href="setting.php" class="list-group-item list-group-item-action bg-light">Setting</a>
         <a href="usercontact.php" class="list-group-item list-group-item-action bg-light">User Contact Us</a>
         <a href="faqs.php" class="list-group-item list-group-item-action bg-light">FAQ</a>
+        <a href="setting.php" class="list-group-item list-group-item-action bg-light">Setting</a>
         <a href="./../logout.php" class="list-group-item list-group-item-action bg-light">Logout</a>
       </div>
     </div>
