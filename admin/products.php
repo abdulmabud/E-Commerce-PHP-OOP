@@ -8,13 +8,32 @@
         $salePrice = $_POST['sale_price'];
         $categoryId = $_POST['category_id'];
         $status = $_POST['status'];
-
-        $insert = $db->insert("INSERT INTO products(title, regular_price, sale_price, category_id, status) VALUES('$title', '$regularPrice', '$salePrice', '$categoryId', '$status')");
+         $insert = $db->insert("INSERT INTO products(title, regular_price, sale_price, category_id, status) VALUES('$title', '$regularPrice', '$salePrice', '$categoryId', '$status')");
         if($insert){
             echo '<h4 class="alert alert-success">Product added Successfully</h4>';
         }else{
             echo $conn->error;
         }
+        $insert_id = $db->getLastId();
+
+        //thumbnail_image 
+        $thumbExt = pathinfo($_FILES['thumbnail_image']['name'], PATHINFO_EXTENSION);
+        $filename = time().'.'.$thumbExt;
+        $destination = './../uploads/product/'.$filename;
+        move_uploaded_file($_FILES['thumbnail_image']['tmp_name'], $destination);
+        $db->insert("INSERT INTO product_images(product_id, image) VALUES('$insert_id', '$filename')");
+
+        //product image
+        foreach($_FILES['image']['error'] as $key=>$error){
+            if($error === UPLOAD_ERR_OK){
+                $imageExt = pathinfo($_FILES['image']['name'][$key], PATHINFO_EXTENSION);
+                $filename = time().rand(1000, 9999).'.'.$imageExt;
+                $destination = './../uploads/product/'.$filename;
+                move_uploaded_file($_FILES['image']['tmp_name'][$key], $destination);
+                $db->insert("INSERT INTO product_images(product_id, image, thumbnail_image) VALUES('$insert_id', '$filename', 0)");
+            }
+        }
+       
     }
 
     if(isset($_POST['updateProduct'])){

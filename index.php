@@ -108,7 +108,7 @@
 <?php include 'footer.php'; ?>
 
 <script>
-  < ? php
+  <?php
   if (isset($_SESSION['cart'])) {
     $cart = $_SESSION['cart'];
   } else {
@@ -117,8 +117,7 @@
 
   $js = json_encode($cart);
   echo "var cart = ".$js.
-  "; "; ?
-  >
+  "; "; ?>
   console.log((cart['products']));
 
 </script>
