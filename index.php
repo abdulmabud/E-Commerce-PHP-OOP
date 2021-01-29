@@ -25,9 +25,10 @@
   
   $slider_images = $db->select("SELECT meta_value FROM settings WHERE meta_key = 'slider_image' ");
   $slider_active = 1;
-  $result = $db->select("SELECT * FROM products WHERE status = '1' ");
+  $products = $db->select("SELECT a.id, title, regular_price, sale_price, image FROM products as a LEFT JOIN product_images as i ON a.id = i.product_id AND i.thumbnail_image = '1' WHERE a.status = '1' ");
 
-  $fproducts = $db->select("SELECT p.id, title, regular_price, sale_price, c.name FROM products as p INNER JOIN featured_products ON p.id = featured_products.product_id INNER JOIN categories as c ON p.category_id = c.id ");
+  // $products = $db->select("SELECT * FROM products WHERE status = '1' ");
+  $fproducts = $db->select("SELECT p.id, title, regular_price, sale_price, c.name, image FROM products as p INNER JOIN featured_products ON p.id = featured_products.product_id INNER JOIN categories as c ON p.category_id = c.id LEFT JOIN product_images as i ON p.id = i.product_id AND i.thumbnail_image = '1'");
 
 ?>
 <!-- Page Content -->
@@ -61,20 +62,20 @@
       <div class="container">
       <h2>Featured Product</h2>
       <div class="row">
-        <?php while($row = $fproducts->fetch_assoc()){ ?>
+        <?php while($fproduct = $fproducts->fetch_assoc()){ ?>
         <div class="col-lg-3 col-md-6 mb-4">
           <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <a href="#"><img class="card-img-top" src="./uploads/product/<?php echo $fproduct['image'] != null ? $fproduct['image']:'noImage.png'; ?>" alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
                 <a
-                  href="product.php?name=<?php echo $row['title']; ?>&&item=<?php echo $row['id']; ?>"><?php echo $row['title']; ?></a>
+                  href="product.php?name=<?php echo $fproduct['title']; ?>&&item=<?php echo $fproduct['id']; ?>"><?php echo $fproduct['title']; ?></a>
               </h4>
-              <h5 class="d-inline"><del>BDT <?php echo $row['regular_price']; ?></del></h5> <br>
-              <h5 class="d-inline">BDT <?php echo $row['sale_price']; ?></h5>
+              <h5 class="d-inline"><del>BDT <?php echo $fproduct['regular_price']; ?></del></h5> <br>
+              <h5 class="d-inline">BDT <?php echo $fproduct['sale_price']; ?></h5>
             </div>
             <div class="card-footer">
-              <button data-productId="<?php echo $row['id']; ?>" class="btn btn-primary btn-block addtocart">Add to
+              <button data-productId="<?php echo $fproduct['id']; ?>" class="btn btn-primary btn-block addtocart">Add to
                 Cart</button>
             </div>
           </div>
@@ -84,20 +85,20 @@
 
       <h2>New Arrival</h2>
       <div class="row">
-        <?php while($row = $result->fetch_assoc()): ?>
+        <?php while($product = $products->fetch_assoc()): ?>
         <div class="col-lg-3 col-md-6 mb-4">
           <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <a href="#"><img class="card-img-top" src="./uploads/product/<?php echo $product['image'] != null ? $product['image']:'noImage.png'; ?>" alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
                 <a
-                  href="product.php?name=<?php echo $row['title']; ?>&&item=<?php echo $row['id']; ?>"><?php echo $row['title']; ?></a>
+                  href="product.php?name=<?php echo $product['title']; ?>&&item=<?php echo $product['id']; ?>"><?php echo $product['title']; ?></a>
               </h4>
-              <h5 class="d-inline"><del>BDT <?php echo $row['regular_price']; ?></del></h5> <br>
-              <h5 class="d-inline">BDT <?php echo $row['sale_price']; ?></h5>
+              <h5 class="d-inline"><del>BDT <?php echo $product['regular_price']; ?></del></h5> <br>
+              <h5 class="d-inline">BDT <?php echo $product['sale_price']; ?></h5>
             </div>
             <div class="card-footer">
-              <button data-productId="<?php echo $row['id']; ?>" class="btn btn-primary btn-block addtocart">Add to
+              <button data-productId="<?php echo $product['id']; ?>" class="btn btn-primary btn-block addtocart">Add to
                 Cart</button>
             </div>
           </div>

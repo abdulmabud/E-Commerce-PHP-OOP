@@ -9,7 +9,7 @@
     $result = $db->select("SELECT id, name FROM categories WHERE slug = '$slug' ");
     $category = $result->fetch_assoc();
     $c_id = $category['id'];
-    $res = $db->select("SELECT id, title, regular_price, sale_price FROM products WHERE category_id = '$c_id' ");
+    $res = $db->select("SELECT p.id, title, regular_price, sale_price, image FROM products as p LEFT JOIN product_images as i ON p.id = i.product_id AND thumbnail_image = '1'  WHERE category_id = '$c_id' ");
     
 ?>
 
@@ -20,7 +20,7 @@
             
             <div class="col-lg-3 col-md-6 mb-4">
                 <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                    <a href="#"><img class="card-img-top" src="./uploads/product/<?php echo $product['image'] != null ? $product['image']:'noImage.png'; ?>" alt=""></a>
                     <div class="card-body">
                         <h4 class="card-title">
                             <a href="product.php?name=<?php echo $product['title']; ?>&item=<?php echo $product['id']; ?>"><?php echo $product['title']; ?></a>
